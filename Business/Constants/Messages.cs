@@ -14,6 +14,8 @@ namespace Business.Constants
 		public static string CarUpdated = "Car Updated";
 		public static string CarListed = "Car Listed";
 		public static string CarNameInvalid = "Car Name must be at least two letters!";
+		public static string BrandLimitExceededError = " Car Brand Limit cannot Exceed 30";
+
 
 
 
@@ -22,6 +24,9 @@ namespace Business.Constants
 		public static string BrandDeleted = "Brand Deleted";
 		public static string BrandUpdated = "Brand Updated";
 		public static string BrandListed = "Brand Listed";
+		public static string SameBrandNameError= "The same brand of car is already registered in the system.";
+		public static string BrandNotFoundError= "No such brand was found.";
+
 
 
 
@@ -30,6 +35,7 @@ namespace Business.Constants
 		public static string ColorDeleted = "Color Deleted";
 		public static string ColorUpdated = "Color Updated";
 		public static string ColorListed = "Color Listed";
+		public static string ColorAddedError= "The same color of car is already registered in the system. ";
 
 
 		//User Message
@@ -39,6 +45,12 @@ namespace Business.Constants
 		public static string UserUpdated = "User Updated";
 		public static string UserUpdatedError = "User Did Not Update";
 		public static string UserListed = "User Listed";
+		public static string UserNotExistError= "User is not registered.";
+		public static string UserEmailNotAvailable= "User e-mail address does not exist";
+		public static string UserEmailExist = "User e-mail exist";
+
+
+
 
 		//Customer Message
 		public static string CustomerAdded = "Customer Added";
@@ -51,7 +63,8 @@ namespace Business.Constants
 		public static string CustomerListedError = "Customer Did Not List";
 		public static string CustomerListedById = "Customer Listed By ID";
 		public static string CustomerNotExist = "Customer Did Not Exist";
-		
+		public static string CustomerAlreadyRegister= "Customer is already registered.";
+
 
 		//Rental Message
 		public static string RentalAdded = "Rental Added";
@@ -66,9 +79,10 @@ namespace Business.Constants
 
 
 		//CarImage Message
-		public static string CarImageLimitError= "A car can have up to 5 images.";
-		public static string CarImageAdded= "Car Image Added Successfully";
-		public static string CarImageDeleted= "Car Image Deleted Successfully";
-		public static string CarImageUpdated="Car Image Updated Successfully";
+		public static string CarImageLimitError = "A car can have up to 5 images.";
+		public static string CarImageAdded = "Car Image Added Successfully";
+		public static string CarImageDeleted = "Car Image Deleted Successfully";
+		public static string CarImageUpdated = "Car Image Updated Successfully";
+		
 	}
 }

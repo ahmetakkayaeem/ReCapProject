@@ -10,8 +10,8 @@ namespace Business.ValidationRules.FluentValidation
 	{
 		public CarImageValidator()
 		{
-			RuleFor(c => c.CarId).NotNull();
-			RuleFor(c => c.CarId).GreaterThan(0);
+			RuleFor(c => c.CarId).NotNull().WithMessage("CarId can not be empty");
+			RuleFor(c => c.CarId).GreaterThan(0).WithMessage("Please enter a value greater than zero");
 
 		}
 	}

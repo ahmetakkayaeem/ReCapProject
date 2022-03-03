@@ -84,7 +84,7 @@ namespace Business.Concrete
 		private IResult CheckIfCarImageLimitExceeded(int carId)
 		{
 			var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
-			if (result>4)
+			if (result>=5)
 			{
 				return new ErrorResult(Messages.CarImageLimitError);
 			}
@@ -104,7 +104,7 @@ namespace Business.Concrete
 		private IDataResult<List<CarImage>> GetDefaultImage(int carId)
 		{
 			List<CarImage> carImage = new List<CarImage>();
-			carImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = "Default.jpg" });
+			carImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = "DefaultImage.jpg" });
 			return new SuccessDataResult<List<CarImage>>(carImage);
 		}
 

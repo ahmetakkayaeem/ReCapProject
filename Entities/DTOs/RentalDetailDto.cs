@@ -30,5 +30,6 @@ namespace Entities.DTOs
 		public string CarName { get; set; }
 
 		public int CustomerId { get; set; }
+
 	}
 }

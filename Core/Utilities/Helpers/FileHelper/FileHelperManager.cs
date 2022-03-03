@@ -25,6 +25,7 @@ namespace Core.Utilities.Helpers.FileHelper
 		//root=>yeni dosyanın kaydedileceği ana dizin
 		public string Update(IFormFile file, string filePath, string root)//güncellenecek yeni dosya,eski dosyanın kayıt dizini ve yeni bir kayıt dizini
 		{
+			
 			if (File.Exists(filePath)) //parametre ile gelen adreste öyle bir dosya var mı
 			{
 				File.Delete(filePath); //dosya varsa bulunduğu yerden sil.

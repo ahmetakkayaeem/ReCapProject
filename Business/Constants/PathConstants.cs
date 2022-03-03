@@ -6,6 +6,6 @@ namespace Business.Constants
 {
 	public class PathConstants
 	{
-		public static string ImagesPath = "wwwroot\\Uploads\\";//klasör oluşturma yolu
+		public static string ImagesPath = "wwwroot\\Uploads\\images\\";//klasör oluşturma yolu
 	}
 }

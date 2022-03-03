@@ -104,7 +104,7 @@ namespace ConsoleUI
 
 		private static void CustomerGetCustomerDetailsTest()
 		{
-			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+			CustomerManager customerManager = new CustomerManager(new EfCustomerDal(),new UserManager(new EfUserDal()));
 
 			var result = customerManager.GetCustomerDetails();
 
@@ -126,7 +126,7 @@ namespace ConsoleUI
 
 		private static void CustomerGetByIdTest()
 		{
-			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+			CustomerManager customerManager = new CustomerManager(new EfCustomerDal(), new UserManager(new EfUserDal()));
 			var result = customerManager.GetById(6);
 
 			if (result.Success)
@@ -141,7 +141,7 @@ namespace ConsoleUI
 
 		private static void CustomerGetCustomerByUserIdTest()
 		{
-			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+			CustomerManager customerManager = new CustomerManager(new EfCustomerDal(),new UserManager(new EfUserDal()));
 			var result = customerManager.GetCustomerByUserId(20);
 			if (result.Success)
 			{
@@ -160,7 +160,7 @@ namespace ConsoleUI
 
 		private static void CustomerAddTest()
 		{
-			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+			CustomerManager customerManager = new CustomerManager(new EfCustomerDal(), new UserManager(new EfUserDal()));
 			customerManager.Add(new Customer
 			{
 
@@ -227,7 +227,7 @@ namespace ConsoleUI
 
 		private static void CarGetAllTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(),new BrandManager(new EfBrandDal()));
 			var result = carManager.GetAll();
 			if (result.Success)
 			{
@@ -265,7 +265,7 @@ namespace ConsoleUI
 		private static void CarGetByIdTest()
 		{
 			//Car tablosunun Id e göre sütunu getirir o yüzden foreach döngüsüne gerek yoktur.
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 
 			var car = carManager.GetById(2002).Data;
 
@@ -274,7 +274,7 @@ namespace ConsoleUI
 
 		private static void CarGetCarsByColorIdTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 			var result = carManager.GetCarsByColorId(1);
 			if (result.Success)
 			{
@@ -289,7 +289,7 @@ namespace ConsoleUI
 
 		private static void CarGetCarsByBrandIdTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 			var result = carManager.GetCarsByBrandId(1);
 			foreach (var car in result.Data)
 			{
@@ -299,7 +299,7 @@ namespace ConsoleUI
 
 		private static void CarGetCarDetailsTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 
 			foreach (var car in carManager.GetCarDetails().Data)
 			{
@@ -310,7 +310,7 @@ namespace ConsoleUI
 
 		private static void CarUpdatedTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 			//güncelleme yaparken tablodaki Id gerekli 
 			carManager.Update(new Car { 
 				Id = 3011, 
@@ -328,7 +328,7 @@ namespace ConsoleUI
 
 		private static void CarDeletedTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 			//silme yaparken tablodaki Id gerekli 
 
 			carManager.Delete(new Car { 
@@ -343,7 +343,7 @@ namespace ConsoleUI
 
 		private static void CarAddedTest()
 		{
-			CarManager carManager = new CarManager(new EfCarDal());
+			CarManager carManager = new CarManager(new EfCarDal(), new BrandManager(new EfBrandDal()));
 			//ekleme yaparken ıd gerekli DEĞİL
 			carManager.Add(new Car { 
 				ColorId = 2,

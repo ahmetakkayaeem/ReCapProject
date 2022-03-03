@@ -16,10 +16,11 @@ namespace Business.Concrete
 	public class RentalManager : IRentalService
 	{
 		IRentalDal _rentalDal;
-
+		
 		public RentalManager(IRentalDal rentalDal)
 		{
 			_rentalDal = rentalDal;
+			
 		}
 
 		[ValidationAspect(typeof(RentalValidator))]
@@ -33,15 +34,7 @@ namespace Business.Concrete
 			_rentalDal.Add(rental);
 			return new SuccessResult(Messages.RentalAdded);
 		}
-		private IResult CheckIfReturnDateNull(int carId)
-		{
-			var result = _rentalDal.GetAll(r => r.CarId==carId && r.ReturnDate == null);
-			if (result.Count>0)
-			{
-				return new ErrorResult(Messages.RentalAddedError);
-			}
-			return new SuccessResult();
-		}
+
 
 		public IResult Delete(Rental rental)
 		{
@@ -91,6 +84,16 @@ namespace Business.Concrete
 		{
 			_rentalDal.Update(rental);
 			return new SuccessResult(Messages.RentalUpdated);
+		}
+
+		private IResult CheckIfReturnDateNull(int carId)
+		{
+			var result = _rentalDal.GetAll(r => r.CarId == carId && r.ReturnDate == null);
+			if (result.Count > 0)
+			{
+				return new ErrorResult(Messages.RentalAddedError);
+			}
+			return new SuccessResult();
 		}
 	}
 }
