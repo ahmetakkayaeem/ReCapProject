@@ -5,6 +5,7 @@ using Entities.Concrete;
 using System.Linq;
 
 using System;
+using Core.Entities.Concrete;
 
 namespace ConsoleUI
 {
@@ -202,7 +203,7 @@ namespace ConsoleUI
 				FirstName = "aaaa",
 				LastName="",
 				Email = "ccc@gmail.comm",
-				Password = "423324a"
+				//Password = "423324a"
 			});
 			if (result.Success)
 			{

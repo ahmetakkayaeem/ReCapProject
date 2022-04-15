@@ -1,4 +1,4 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -25,8 +25,8 @@ namespace Business.ValidationRules.FluentValidation
 			RuleFor(u => u.Email).NotEmpty();
 			RuleFor(u => u.Email).NotNull();
 
-			RuleFor(u => u.Password).Must(IsPasswordValid).WithMessage("Your Password must contain at least eight characters,at least one letter and a number");
-
+			//RuleFor(u => u.Password).Must(IsPasswordValid).WithMessage("Your Password must contain at least eight characters,at least one letter and a number");
+			//14. dersde yeniden eklenen user veritabanında password kısmı kaldırıldı.Hatırlatma
 
 		}
 

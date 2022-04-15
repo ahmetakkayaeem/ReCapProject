@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -22,7 +24,10 @@ namespace Business.Concrete
 			_brandDal = brandDal;
 		}
 
+		[SecuredOperation("admin")]
 		[ValidationAspect(typeof(BrandValidator))]
+		[CacheRemoveAspect("IBrandService.Get")]
+		[CacheRemoveAspect("ICarService.Get")]
 		public IResult Add(Brand brand)
 		{
 			IResult result = BusinessRules.Run(CheckIfBrandNameExists(brand.BrandName));
@@ -34,6 +39,9 @@ namespace Business.Concrete
 			return new SuccessResult(Messages.BrandAdded );
 		}
 
+		[SecuredOperation("admin")]
+		[CacheRemoveAspect("IBrandService.Get")]
+		[CacheRemoveAspect("ICarService.Get")]
 		public IResult Delete(Brand brand)
 		{
 			IResult result = BusinessRules.Run(CheckBrandIdExists(brand.BrandId));
@@ -54,6 +62,7 @@ namespace Business.Concrete
 			return new SuccessDataResult<List<Brand>>( _brandDal.GetAll());
 		}
 
+		[CacheAspect(20)]
 		public IDataResult<Brand> GetById(int brandId)
 		{
 			IResult result = BusinessRules.Run(CheckBrandIdExists(brandId));
@@ -64,7 +73,10 @@ namespace Business.Concrete
 			return new SuccessDataResult<Brand>( _brandDal.Get(c => c.BrandId == brandId));
 		}
 
+		[SecuredOperation("admin")]
 		[ValidationAspect(typeof(BrandValidator))]
+		[CacheRemoveAspect("IBrandService.Get")]
+		[CacheRemoveAspect("ICarService.Get")]
 		public IResult Update(Brand brand)
 		{
 			IResult result = BusinessRules.Run(CheckIfBrandNameExists(brand.BrandName),

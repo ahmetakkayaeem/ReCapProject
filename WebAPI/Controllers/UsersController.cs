@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -47,18 +47,6 @@ namespace WebAPI.Controllers
 
 		}
 
-		[HttpGet("getbyemail")]
-
-		public IActionResult GetByEmail(string email)
-		{
-			var result = _userService.GetByEmail(email);
-			if (result.Success)
-			{
-				return Ok(result);
-			}
-			return BadRequest(result);
-
-		}
 
 
 		[HttpPost("add")]

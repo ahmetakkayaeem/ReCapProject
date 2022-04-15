@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Caching;
 using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -26,6 +28,8 @@ namespace Business.Concrete
 		}
 
 		[ValidationAspect(typeof(CustomerValidator))]
+		[CacheRemoveAspect("ICustomerService.Get")]
+		[SecuredOperation("admin")]
 		public IResult Add(Customer customer)
 		{
 			IResult result = BusinessRules.Run(CheckIfUserIdValid(customer.UserId), CheckIfUserIdExist(customer.UserId));
@@ -36,7 +40,9 @@ namespace Business.Concrete
 			_customerDal.Add(customer);
 			return new SuccessResult(Messages.CustomerAdded);
 		}
-
+		
+		[CacheRemoveAspect("ICustomerService.Get")]
+		[SecuredOperation("admin")]
 		public IResult Delete(Customer customer)
 		{
 			IResult result = BusinessRules.Run(CheckIfUserIdExist(customer.UserId));
@@ -48,11 +54,14 @@ namespace Business.Concrete
 			return new SuccessResult(Messages.CustomerDeleted);
 		}
 
+		[CacheAspect]
+		[SecuredOperation("admin")]
 		public IDataResult<List<Customer>> GetAll()
 		{
 			return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
 		}
 
+		[CacheAspect]
 		public IDataResult<Customer> GetById(int customerId)
 		{
 			Customer customer = _customerDal.Get(c => c.Id == customerId);
@@ -84,7 +93,8 @@ namespace Business.Concrete
 			}
 			return new SuccessDataResult<List<CustomerDetailDto>>(customers, Messages.CustomerListed);
 		}
-
+		[CacheRemoveAspect("ICustomerService.Get")]
+		[SecuredOperation("admin")]
 		[ValidationAspect(typeof(CustomerValidator))]
 		public IResult Update(Customer customer)
 		{
